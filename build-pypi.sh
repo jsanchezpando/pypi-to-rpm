@@ -11,13 +11,14 @@ do
 	version=`echo $pypi | awk -F':' '{print $2}'`
 	basename=`echo $pypi | awk -F':' '{print $1}'`
 	cd BUILD
-	if [[ $version ]]; then	
+	echo $version
+	if [[ -e $version ]]; then
 		echo "Building latest $basename "
-		fpm -e -t rpm -s python -a noarch $pypi --python-bin $PYTHON_BIN
+		fpm -e -t rpm -s python -a noarch --python-bin $PYTHON_BIN $pypi
 		RETVAL=$?
 	else
 		echo "Building  $basename version $version "
-		fpm -e -t rpm -s python -v $version -a noarch $basename --python-bin $PYTHON_BIN
+		fpm -e -t rpm -s python -v $version -a noarch --python-bin $PYTHON_BIN $basename
 		RETVAL=$?
 	fi
 	echo "Build of $basename returned with $RETVAL"
