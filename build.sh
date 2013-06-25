@@ -14,7 +14,6 @@ if [[ -n $1 ]]
 fi
 
 build() {
-  pip install pypy2rpm
   pypi2rpm.py --dist-dir ${PREFIX}/${DESTDIR} $1
 }
 
