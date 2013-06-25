@@ -5,7 +5,7 @@ PACKAGES=(psycopg2)
 DESTDIR="./BUILD"
 PREFIX=$(pwd)
 
-if [[ -n $1 ]]
+if [[ -n $1 ]]; then
   idx=$(( ${#PACKAGES[@]} - 1 ))
   for a in $@; do
     idx=$((idx + 1))
