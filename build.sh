@@ -2,10 +2,12 @@
 
 ENVS=(2.6 2.7)
 PACKAGES=(psycopg2)
+DESTDIR="./BUILD"
+PREFIX=$(pwd)
 
 build() {
   pip install pypy2rpm
-  pypi2rpm.py $1
+  pypi2rpm.py --dist-dir ${PREFIX}/${DESTDIR} $1
 }
 
 setupenv() {
@@ -18,6 +20,8 @@ cleanenv() {
   deactivate
   rm -rf venv
 }
+
+[[ -d ${DESTDIR} ]] || mkdir -p ${DESTDIR}
 
 for e in ${ENVS[@]}; do
   setupenv ${e}
