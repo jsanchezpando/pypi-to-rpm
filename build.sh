@@ -5,6 +5,14 @@ PACKAGES=(psycopg2)
 DESTDIR="./BUILD"
 PREFIX=$(pwd)
 
+if [[ -n $1 ]]
+  idx=$(( ${#PACKAGES[@]} - 1 ))
+  for a in $@; do
+    idx=$((idx + 1))
+    PACKAGES[$idx]=$a
+  done
+fi
+
 build() {
   pip install pypy2rpm
   pypi2rpm.py --dist-dir ${PREFIX}/${DESTDIR} $1
