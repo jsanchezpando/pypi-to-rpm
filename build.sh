@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ENVS=(2.6 2.7)
-PACKAGES=(psycopg2)
+PACKAGES=(cx_Oracle psycopg2)
 DESTDIR="./BUILD"
 PREFIX=$(pwd)
 
